@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: cloud-nacos
+  main:
+    allow-bean-definition-overriding: true
+  profiles:
+    active: dev  #public-dev.yaml的后缀dev，代表开发环境
+  cloud:
+    nacos:
+      discovery:  #注册中心
+        server-addr: 127.0.0.1:8848
+        enabled: true
+      config:    #配置中心
+        server-addr: 127.0.0.1:8848
+        group: DEFAULT_GROUP
+        file-extension: yaml  #拿到的是nacos中的cart-dev.yaml
+        ext-config[0]:
+          data-id: public-dev.yaml  #拿到的是nacos中的public-dev.yaml
+          group: COMMON_GROUP
+          refresh: true
