@@ -23,6 +23,7 @@ public class BaseResult<T> {
         this.data = data;
     }
 
+
     public BaseResult(ResultStatusCode resultStatusCode, T data){
         this(resultStatusCode.getCode(), resultStatusCode.getMsg(), data);
     }
@@ -73,5 +74,9 @@ public class BaseResult<T> {
 
     public static BaseResult fail(ResultStatusCode resultStatusCode) {
         return new BaseResult(resultStatusCode,null);
+    }
+
+    public static BaseResult fail(int code, String msg) {
+        return new BaseResult(code, msg);
     }
 }

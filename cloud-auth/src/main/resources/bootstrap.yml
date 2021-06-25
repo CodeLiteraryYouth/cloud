@@ -1,6 +1,6 @@
 spring:
   application:
-    name: cloud-gateway
+    name: cloud-auth
   main:
     allow-bean-definition-overriding: true
   profiles:

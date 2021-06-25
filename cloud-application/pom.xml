@@ -21,6 +21,12 @@
             <artifactId>cloud-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.dmj</groupId>
+            <artifactId>cloud-biz</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
         <!--  springboot 整合web组件-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

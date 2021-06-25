@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: cloud-gateway
+  main:
+    allow-bean-definition-overriding: true
+  profiles:
+    active: dev  #public-dev.yaml的后缀dev，代表开发环境
+  cloud:
+    nacos:
+      discovery:  #注册中心
+        server-addr: 127.0.0.1:8848
+        enabled: true
+    gateway:
+      discovery:
+        locator:
+          enabled: true # 启用自动根据服务ID生成路由
+          lower-case-service-id: true # 设置路由的路径为小写的服务ID
+      routes:
+        - id: cloud-auth
+          uri: lb://cloud-auth
+          predicates:
+            - Path=/cloud-auth/**
+          filters:
+            - StripPrefix=1 # 移除前缀 cloud-auth

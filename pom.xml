@@ -21,6 +21,7 @@
 		<module>cloud-application</module>
 		<module>cloud-nacos</module>
 		<module>cloud-gateway</module>
+		<module>cloud-auth</module>
 	</modules>
 
 </project>
