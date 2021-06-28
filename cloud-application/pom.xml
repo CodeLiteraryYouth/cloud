@@ -27,6 +27,7 @@
             <artifactId>cloud-biz</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+
         <!--  springboot 整合web组件-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -62,7 +63,7 @@
 
         <!--服务熔断配置-->
         <dependency>
-            <groupId>com.alibaba.cloud</groupId>
+            <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
         </dependency>
     </dependencies>
@@ -85,5 +86,14 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-    
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>

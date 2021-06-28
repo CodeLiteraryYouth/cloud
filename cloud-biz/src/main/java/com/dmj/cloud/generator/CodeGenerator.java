@@ -20,7 +20,7 @@ public class CodeGenerator {
     private static final String MODULE = "cloud-biz";
     private static final String AUTHOR = "zd";
 
-    private static final String URL                = "jdbc:mysql://localhost:3306/admin?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=UTC";
+    private static final String URL                = "jdbc:mysql://localhost:3306/cloud?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=UTC";
     private static final String DRIVER             = "com.mysql.cj.jdbc.Driver";
     private static final String USERNAME           = "root";
     private static final String PASSWORD           = "123456";
@@ -85,7 +85,7 @@ public class CodeGenerator {
         // config.setSuperControllerClass();
 
         // 设置需要generator的表名
-        config.setInclude("sys_permission","sys_role","sys_role_permission","sys_user","sys_user_role");
+        config.setInclude("sys_oauth_client");
         // 设置不需要generator的表名
         // config.setExclude();
 

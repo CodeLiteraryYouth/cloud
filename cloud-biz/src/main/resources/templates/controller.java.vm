@@ -4,6 +4,7 @@ package ${package.Controller};
 import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.dmj.cloud.base.BaseResult;
+import org.springframework.beans.factory.annotation.Autowired;
 import ${package.Entity}.${entity};
 import ${package.Service}.${table.serviceName};
     #if(${restControllerStyle})
@@ -47,38 +48,38 @@ public class ${table.controllerName} extends ${superControllerClass} {
 #else
 public class ${table.controllerName} {
 #end
-    @Resource
+    @Autowired
     private ${table.serviceName} service;
 
     @PostMapping("/save")
     public BaseResult<${entity}> save(@RequestBody ${entity} entity) {
         service.saveOrUpdate(entity);
-        return BaseResult.createBySuccess(entity);
+        return BaseResult.success(entity);
     }
 
     @PutMapping("/update")
-    public BaseResult<${entiy}> update(@RequestBody ${entiy} entiy) {
+    public BaseResult<${entity}> update(@RequestBody ${entity} entity) {
         service.saveOrUpdate(entity);
-        return BaseResult.createBySuccess(entity);
+        return BaseResult.success(entity);
     }
 
 
-    @DeleteMapping("/delete/{id}")
-    public BaseResult delete(@PathVariable String id) {
+    @DeleteMapping("/delete")
+    public BaseResult delete(@RequestParam String id) {
         service.removeById(id);
-        return BaseResult.createBySuccess();
+        return BaseResult.success();
     }
 
     @GetMapping("/get")
     public BaseResult<${entity}> select(@RequestParam String id) {
         ${entity} data = service.getById(id);
-        return BaseResult.createBySuccess(data);
+        return BaseResult.success(data);
     }
 
     @PostMapping("/page")
     public BaseResult<Page<${entity}>> page(@RequestBody Page<${entity}> page) {
         page = service.page(page);
-        return BaseResult.createBySuccess(page);
+        return BaseResult.success(page);
     }
 }
 

@@ -66,12 +66,6 @@
             <artifactId>spring-security-oauth2-jose</artifactId>
         </dependency>
 
-        <!-- Api文档 -->
-        <dependency>
-            <groupId>com.github.xiaoymin</groupId>
-            <artifactId>knife4j-spring-boot-starter</artifactId>
-        </dependency>
-
     </dependencies>
 
     <dependencyManagement>
