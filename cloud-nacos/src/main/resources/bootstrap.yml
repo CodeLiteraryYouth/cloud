@@ -8,13 +8,29 @@ spring:
   cloud:
     nacos:
       discovery:  #注册中心
-        server-addr: 127.0.0.1:8848
+        server-addr: 106.14.224.151:8848
         enabled: true
       config:    #配置中心
-        server-addr: 127.0.0.1:8848
+        server-addr: 106.14.224.151:8848
         group: DEFAULT_GROUP
         file-extension: yaml  #拿到的是nacos中的cart-dev.yaml
         ext-config[0]:
           data-id: public-dev.yaml  #拿到的是nacos中的public-dev.yaml
           group: COMMON_GROUP
           refresh: true
+    sentinel:
+      transport:
+        #与控制台通讯的端口，默认是8719，不可用会一直+1，知道找到一个可用的
+        port: 8719
+        # 控制台的地址
+        dashboard: 127.0.0.1:8080
+        # 和控制台保持心跳的ip地址
+        client-ip: 127.0.0.1
+        # 发送心跳的周期，默认是10s
+        heartbeat-interval-ms: 10000
+management:
+  # 端点检查（健康检查）
+  endpoints:
+    web:
+      exposure:
+        include: "*"

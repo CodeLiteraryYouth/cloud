@@ -7,7 +7,8 @@ public enum ResultStatusCode {
 
     USER_NOT_EXIST(1000,"用户不存在"),
     USERNAME_OR_PASSWORD_ERROR(1001,"用户名或者密码异常"),
-    USER_AUTHORIZED_ERRROR(1002,"账户异常");
+    USER_AUTHORIZED_ERRROR(1002,"账户异常"),
+    CLIENT_AUTHENTICATION_FAILED(1003, "客户端认证失败");
 
 
 
