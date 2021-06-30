@@ -52,13 +52,13 @@
         <dependency>
             <groupId>com.alibaba.csp</groupId>
             <artifactId>sentinel-transport-simple-http</artifactId>
-            <version>1.6.3</version>
+            <version>1.8.0</version>
         </dependency>
         <!-- Sentinel 针对 Nacos 作了适配，底层可以采用 Nacos 作为规则配置数据源 -->
         <dependency>
             <groupId>com.alibaba.csp</groupId>
             <artifactId>sentinel-datasource-nacos</artifactId>
-            <version>1.6.3</version>
+            <version>1.8.0</version>
         </dependency>
 
         <dependency>

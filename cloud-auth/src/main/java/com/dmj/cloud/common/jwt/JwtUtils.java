@@ -1,4 +1,4 @@
-package com.dmj.cloud.util;
+package com.dmj.cloud.common.jwt;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONObject;
