@@ -36,7 +36,9 @@ public class SecurityGlobalFilter implements GlobalFilter, Ordered {
     @Autowired
     private RedisTemplate redisTemplate;
 
-    // 是否演示环境
+    /**
+     * 是否演示环境
+      */
     @Value("${demo}")
     private Boolean isDemoEnv;
 
@@ -48,8 +50,7 @@ public class SecurityGlobalFilter implements GlobalFilter, Ordered {
         ServerHttpResponse response = exchange.getResponse();
 
         // 演示环境禁止删除和修改
-        if (isDemoEnv
-                && (HttpMethod.DELETE.toString().equals(request.getMethodValue()) // 删除方法
+        if (isDemoEnv && (HttpMethod.DELETE.toString().equals(request.getMethodValue()) // 删除方法
                 || HttpMethod.PUT.toString().equals(request.getMethodValue())) // 修改方法
         ) {
             return ResponseUtils.writeErrorInfo(response, ResultStatusCode.FORBIDDEN_OPERATION);
