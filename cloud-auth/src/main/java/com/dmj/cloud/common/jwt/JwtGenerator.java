@@ -5,6 +5,8 @@ import org.springframework.security.jwt.JwtHelper;
 import org.springframework.security.jwt.crypto.sign.RsaSigner;
 import org.springframework.stereotype.Component;
 
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.security.KeyPair;
 import java.security.interfaces.RSAPrivateKey;
 import java.util.Map;
@@ -32,7 +34,6 @@ public class JwtGenerator {
         String accessToken = JwtHelper.encode(payload, signer).getEncoded();
         return accessToken;
     }
-
 
 }
 

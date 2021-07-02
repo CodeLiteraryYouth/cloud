@@ -74,7 +74,9 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, user_name, password, nick_name, mobile, email, phone, avatar_url, open_id, locked, create_time, creater, update_time, updater, delete_flag
+        u.id, u.user_name, u.password, u.nick_name, u.mobile, u.email, u.phone, u.avatar_url,
+        u.open_id, u.locked, u.create_time, u.creater, u.update_time, u.updater, u.delete_flag,
+        r.role_code
     </sql>
     <select id="getUserByName" resultMap="ResultMapDTO">
         select
@@ -85,6 +87,26 @@
         where u.delete_flag=false
         <if test="userName != null and userName != ''">
             and u.user_name=#{userName}
+        </if>
+    </select>
+    <select id="listSysUser" resultMap="ResultMapVO">
+        select
+        u.id, u.user_name, u.password, u.nick_name, u.mobile, u.email, u.phone, u.avatar_url,
+        u.open_id, u.locked, u.create_time, u.creater, u.update_time, u.updater, u.delete_flag,
+        r.role_code,r.role_name,r.role_desc,r.sys_default,r.create_time,r.creater,r.update_time,
+        r.updater,r.delete_flag
+        from sys_user u
+        left join sys_user_role ur on u.id=ur.user_id
+        left join sys_role r on ur.role_id=r.id
+        where u.delete_flag=false
+        <if test="startTime !=null and endTime != null">
+           and u.create_time between #{startTime} and #{endTime}
+        </if>
+        <if test="userName !=null and userName !=''">
+            and u.user_name like CONCAT('%',#{userName})
+        </if>
+        <if test="sort != null and sort != '' and  sortField != null and sortField != ''">
+            order by u.#{sortField} #{sort}
         </if>
     </select>
 

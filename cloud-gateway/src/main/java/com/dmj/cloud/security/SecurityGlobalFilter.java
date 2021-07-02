@@ -9,6 +9,7 @@ import com.dmj.cloud.util.ResponseUtils;
 import com.nimbusds.jose.JWSObject;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,6 +23,9 @@ import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
+import cn.hutool.core.util.StrUtil;
+
+import java.util.Objects;
 
 /**
  * 安全拦截全局过滤器
@@ -38,7 +42,7 @@ public class SecurityGlobalFilter implements GlobalFilter, Ordered {
 
     /**
      * 是否演示环境
-      */
+     */
     @Value("${demo}")
     private Boolean isDemoEnv;
 
@@ -50,10 +54,17 @@ public class SecurityGlobalFilter implements GlobalFilter, Ordered {
         ServerHttpResponse response = exchange.getResponse();
 
         // 演示环境禁止删除和修改
-        if (isDemoEnv && (HttpMethod.DELETE.toString().equals(request.getMethodValue()) // 删除方法
+        if (isDemoEnv
+                && (HttpMethod.DELETE.toString().equals(request.getMethodValue()) // 删除方法
                 || HttpMethod.PUT.toString().equals(request.getMethodValue())) // 修改方法
         ) {
             return ResponseUtils.writeErrorInfo(response, ResultStatusCode.FORBIDDEN_OPERATION);
+        }
+
+        //将排序字段驼峰转为下划线
+        String sortField=request.getQueryParams().getFirst("sortField");
+        if (Objects.nonNull(sortField) && StringUtils.isNotEmpty(sortField)) {
+            request.getQueryParams().set("sortField",StrUtil.toUnderlineCase(sortField));
         }
 
         // 非JWT或者JWT为空不作处理

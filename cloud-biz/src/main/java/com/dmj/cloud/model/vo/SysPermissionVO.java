@@ -1,32 +1,20 @@
-package com.dmj.cloud.model;
+package com.dmj.cloud.model.vo;
 
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
-import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableField;
-import java.io.Serializable;
-import io.swagger.annotations.ApiModel;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
- * <p>
- * 
- * </p>
- *
  * @author zd
- * @since 2021-06-28
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
-@Accessors(chain = true)
-@TableName("sys_permission")
-@ApiModel(value="SysPermission对象", description="")
-public class SysPermission implements Serializable {
+public class SysPermissionVO implements Serializable {
 
     private static final long serialVersionUID=1L;
 
@@ -82,5 +70,4 @@ public class SysPermission implements Serializable {
     @TableField("delete_flag")
     @TableLogic
     private Boolean deleteFlag;
-
 }

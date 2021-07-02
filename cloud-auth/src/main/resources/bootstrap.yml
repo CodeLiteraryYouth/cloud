@@ -19,3 +19,13 @@ management:
     web:
       exposure:
         include: "*"
+# jwt 配置
+jwt:
+  config:
+    enabled: true
+    key-location: jwt.jks
+    key-alias: jwt
+    key-pass: 123456
+    iss: zd
+    sub: all
+    access-exp-days: 30

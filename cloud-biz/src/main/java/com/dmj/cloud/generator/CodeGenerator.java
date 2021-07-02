@@ -85,7 +85,7 @@ public class CodeGenerator {
         // config.setSuperControllerClass();
 
         // 设置需要generator的表名
-        config.setInclude("sys_oauth_client");
+        config.setInclude("sys_role_permission");
         // 设置不需要generator的表名
         // config.setExclude();
 

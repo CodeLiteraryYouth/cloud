@@ -19,6 +19,8 @@ spring:
           group: DEFAULT_GROUP
           refresh: true
     sentinel:
+      enabled: false # 网关流控开关
+      eager: true # 取消控制台懒加载，项目启动即连接Sentinel
       transport:
         #与控制台通讯的端口，默认是8719，不可用会一直+1，知道找到一个可用的
         port: 8719

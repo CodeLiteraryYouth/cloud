@@ -44,7 +44,8 @@ public class ResourceServerManager implements ReactiveAuthorizationManager<Autho
         if (request.getMethod() == HttpMethod.OPTIONS) {
             return Mono.just(new AuthorizationDecision(true));
         }
-        PathMatcher pathMatcher = new AntPathMatcher(); // 【声明定义】Ant路径匹配模式，“请求路径”和缓存中权限规则的“URL权限标识”匹配
+        // 【声明定义】Ant路径匹配模式，“请求路径”和缓存中权限规则的“URL权限标识”匹配
+        PathMatcher pathMatcher = new AntPathMatcher();
         String path = request.getURI().getPath();
 
         String token = request.getHeaders().getFirst(AuthConstants.AUTHORIZATION_KEY);
