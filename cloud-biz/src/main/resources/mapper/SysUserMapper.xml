@@ -59,7 +59,6 @@
         <result column="updater" property="updater" />
         <result column="delete_flag" property="deleteFlag" />
         <collection property="sysRoles" ofType="com.dmj.cloud.model.SysRole">
-            <id column="id" property="id" />
             <result column="role_code" property="roleCode" />
             <result column="role_name" property="roleName" />
             <result column="role_desc" property="roleDesc" />

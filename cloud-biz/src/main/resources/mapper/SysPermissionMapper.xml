@@ -2,26 +2,51 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dmj.cloud.mapper.SysPermissionMapper">
 
-        <!-- 通用查询映射结果 -->
-        <resultMap id="BaseResultMap" type="com.dmj.cloud.model.SysPermission">
-                    <id column="id" property="id" />
-                    <result column="permission_name" property="permissionName" />
-                    <result column="permission_type" property="permissionType" />
-                    <result column="permission_url" property="permissionUrl" />
-                    <result column="permission_str" property="permissionStr" />
-                    <result column="parent_id" property="parentId" />
-                    <result column="permission_order" property="permissionOrder" />
-                    <result column="is_view" property="isView" />
-                    <result column="creater" property="creater" />
-                    <result column="create_time" property="createTime" />
-                    <result column="updater" property="updater" />
-                    <result column="update_time" property="updateTime" />
-                    <result column="delete_flag" property="deleteFlag" />
-        </resultMap>
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.dmj.cloud.model.SysPermission">
+        <id column="id" property="id" />
+        <result column="permission_name" property="permissionName" />
+        <result column="permission_type" property="permissionType" />
+        <result column="permission_url" property="permissionUrl" />
+        <result column="permission_str" property="permissionStr" />
+        <result column="parent_id" property="parentId" />
+        <result column="permission_order" property="permissionOrder" />
+        <result column="is_view" property="isView" />
+        <result column="creater" property="creater" />
+        <result column="create_time" property="createTime" />
+        <result column="updater" property="updater" />
+        <result column="update_time" property="updateTime" />
+        <result column="delete_flag" property="deleteFlag" />
+    </resultMap>
 
-        <!-- 通用查询结果列 -->
-        <sql id="Base_Column_List">
+    <resultMap id="ResultMapDTO" type="com.dmj.cloud.model.dto.SysPermissionDTO">
+        <id column="id" property="id" />
+        <result column="permission_name" property="permissionName" />
+        <result column="permission_type" property="permissionType" />
+        <result column="permission_url" property="permissionUrl" />
+        <result column="permission_str" property="permissionStr" />
+        <result column="parent_id" property="parentId" />
+        <result column="permission_order" property="permissionOrder" />
+        <result column="is_view" property="isView" />
+        <result column="creater" property="creater" />
+        <result column="create_time" property="createTime" />
+        <result column="updater" property="updater" />
+        <result column="update_time" property="updateTime" />
+        <result column="delete_flag" property="deleteFlag" />
+        <collection property="roles" ofType="java.lang.String">
+            <result column="role_code"/>
+        </collection>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
         id, permission_name, permission_type, permission_url, permission_str, parent_id, permission_order, is_view, creater, create_time, updater, update_time, delete_flag
     </sql>
+    <select id="listPermission" resultMap="BaseResultMap">
+
+    </select>
+    <select id="listPermissionRole" resultMap="ResultMapDTO">
+
+    </select>
 
 </mapper>

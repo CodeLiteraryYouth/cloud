@@ -61,6 +61,6 @@ public class SysRoleDTO implements Serializable {
     @TableLogic
     private Boolean deleteFlag;
 
-    private List<String> permissionIds;
+    private List<Integer> permissionIds;
 
 }

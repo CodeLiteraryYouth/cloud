@@ -1,9 +1,16 @@
 package com.dmj.cloud.model.query;
 
+import lombok.Data;
+
+import java.io.Serializable;
+
 /**
  * @author zd
  */
-public class UserQuery extends BaseQuery {
+@Data
+public class UserQuery extends BaseQuery implements Serializable {
+
+    private static final long serialVersionUID=1L;
 
     private String userName;
 }

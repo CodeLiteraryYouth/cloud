@@ -1,6 +1,5 @@
 package com.dmj.cloud.model.query;
 
-import cn.hutool.core.util.StrUtil;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -13,6 +12,8 @@ import java.time.LocalDateTime;
  */
 @Data
 public class BaseQuery implements Serializable {
+
+    private static final long serialVersionUID=1L;
 
     private Integer pageNo;
 

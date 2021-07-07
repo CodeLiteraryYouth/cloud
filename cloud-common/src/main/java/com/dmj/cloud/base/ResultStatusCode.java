@@ -2,7 +2,7 @@ package com.dmj.cloud.base;
 
 public enum ResultStatusCode {
 
-    OK(200, "OK"),
+    OK(200, "SUCCESS"),
     SYSTEM_ERR(500, "服务器运行异常"),
 
     USER_NOT_EXIST(1000,"用户不存在"),

@@ -2,10 +2,10 @@ package com.dmj.cloud.security.service;
 
 import com.dmj.cloud.base.ResultStatusCode;
 import com.dmj.cloud.common.enums.OAuthClientEnum;
-import com.dmj.cloud.common.jwt.JwtUtils;
 import com.dmj.cloud.domain.OAuthUserDetails;
 import com.dmj.cloud.model.dto.SysUserDTO;
 import com.dmj.cloud.service.SysUserService;
+import com.dmj.cloud.util.JwtUtils;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

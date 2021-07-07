@@ -30,6 +30,6 @@ public class SysUserRole implements Serializable {
     private Integer userId;
 
     @TableField("role_id")
-    private String roleId;
+    private Integer roleId;
 
 }

@@ -55,7 +55,7 @@ public class ResourceServerManager implements ReactiveAuthorizationManager<Autho
             // 如果token以"bearer "为前缀，到这一步说明是经过NimbusReactiveJwtDecoder#decode和JwtTimestampValidator#validate等解析和验证通过的，即已认证
             if (StrUtil.isNotBlank(token) && token.startsWith(AuthConstants.AUTHORIZATION_PREFIX)) {
                 return Mono.just(new AuthorizationDecision(true));
-            }else{
+            } else {
                 return Mono.just(new AuthorizationDecision(false));
             }
         }
