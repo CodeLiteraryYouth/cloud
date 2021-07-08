@@ -15,7 +15,6 @@ import com.dmj.cloud.model.query.RoleQuery;
 import com.dmj.cloud.model.vo.SysRoleVO;
 import com.dmj.cloud.service.SysRoleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.dmj.cloud.util.JwtUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.BeanUtils;
@@ -28,7 +27,6 @@ import org.springframework.util.Assert;
 
 import java.time.LocalDateTime;
 import java.util.*;
-import java.util.stream.BaseStream;
 import java.util.stream.Collectors;
 
 /**
@@ -109,7 +107,6 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
         SysRole sysRole=new SysRole();
         BeanUtils.copyProperties(sysRoleDTO,sysRole);
         sysRole.setCreateTime(LocalDateTime.now());
-        sysRole.setCreater(JwtUtils.getUsername());
         sysRoleMapper.insert(sysRole);
         if (Objects.nonNull(sysRoleDTO.getPermissionIds()) && !sysRoleDTO.getPermissionIds().isEmpty()) {
             for (Integer permissionId: sysRoleDTO.getPermissionIds()) {
@@ -130,7 +127,6 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
         SysRole sysRole=new SysRole();
         BeanUtils.copyProperties(sysRoleDTO,sysRole);
         sysRole.setUpdateTime(LocalDateTime.now());
-        sysRole.setUpdater(JwtUtils.getUsername());
         sysRoleMapper.updateById(sysRole);
         if (Objects.nonNull(sysRoleDTO.getPermissionIds()) && !sysRoleDTO.getPermissionIds().isEmpty()) {
             sysRolePermissionMapper.delete(new LambdaQueryWrapper<SysRolePermission>().eq(SysRolePermission::getRoleId,sysRole.getId()));

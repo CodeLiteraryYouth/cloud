@@ -43,10 +43,28 @@
         id, permission_name, permission_type, permission_url, permission_str, parent_id, permission_order, is_view, creater, create_time, updater, update_time, delete_flag
     </sql>
     <select id="listPermission" resultMap="BaseResultMap">
-
+        select
+        <include refid="Base_Column_List"></include>
+        from sys_permission
+        where where delete_flag=false
+        <if test="startTime !=null and endTime != null">
+            and create_time between #{startTime} and #{endTime}
+        </if>
+        <if test="permissionName !=null and permissionName !=''">
+            and permission_name like CONCAT('%',#{permissionName})
+        </if>
+        <if test="sort != null and sort != '' and  sortField != null and sortField != ''">
+            order by #{sortField} #{sort}
+        </if>
     </select>
     <select id="listPermissionRole" resultMap="ResultMapDTO">
-
+        select
+        p.id, p.permission_name, p.permission_type, p.permission_url, p.permission_str, p.parent_id,
+        p.permission_order, p.is_view, p.creater, p.create_time, p.updater, p.update_time, p.delete_flag
+        from sys_permission p
+        left join sys_role_permission rp on p.id=rp.permissionId
+        left join sys_role r on rp.role_id=r.id
+        where p.delete_flag=false
     </select>
 
 </mapper>

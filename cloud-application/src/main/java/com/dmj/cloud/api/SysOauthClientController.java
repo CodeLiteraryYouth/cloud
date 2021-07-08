@@ -1,11 +1,13 @@
 package com.dmj.cloud.api;
 
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.dmj.cloud.base.BaseResult;
 import com.dmj.cloud.model.SysOauthClient;
+import com.dmj.cloud.model.query.OauthClientQuery;
 import com.dmj.cloud.service.SysOauthClientService;
+import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,38 +23,37 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/sys-oauth-client")
 @Api(tags = "系统管理-客户端管理")
 public class SysOauthClientController {
+
     @Autowired
     private SysOauthClientService service;
 
     @PostMapping("/save")
+    @ApiOperation("新增客户端")
     public BaseResult<SysOauthClient> save(@RequestBody SysOauthClient entity) {
         service.saveOrUpdate(entity);
         return BaseResult.success(entity);
     }
 
     @PutMapping("/update")
+    @ApiOperation("更新客户端")
     public BaseResult<SysOauthClient> update(@RequestBody SysOauthClient entity) {
         service.saveOrUpdate(entity);
         return BaseResult.success(entity);
     }
 
 
-    @DeleteMapping("/delete")
-    public BaseResult delete(@RequestParam String id) {
+    @DeleteMapping("/delete/{id}")
+    @ApiOperation("删除客户端")
+    public BaseResult delete(@PathVariable String id) {
         service.removeById(id);
         return BaseResult.success();
     }
 
-    @GetMapping("/get")
-    public BaseResult<SysOauthClient> select(@RequestParam String id) {
-        SysOauthClient data = service.getById(id);
-        return BaseResult.success(data);
+    @ApiOperation("查询客户端列表")
+    @GetMapping("/page")
+    public BaseResult<PageInfo<SysOauthClient>> pageInfoBaseResult(@ModelAttribute OauthClientQuery query) {
+        return service.pageOauthClient(query);
     }
 
-    @PostMapping("/page")
-    public BaseResult<Page<SysOauthClient>> page(@RequestBody Page<SysOauthClient> page) {
-        page = service.page(page);
-        return BaseResult.success(page);
-    }
 }
 

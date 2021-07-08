@@ -2,6 +2,9 @@ package com.dmj.cloud.mapper;
 
 import com.dmj.cloud.model.SysOauthClient;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.dmj.cloud.model.query.OauthClientQuery;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface SysOauthClientMapper extends BaseMapper<SysOauthClient> {
 
+    List<SysOauthClient> listOauthClients(OauthClientQuery query);
 }

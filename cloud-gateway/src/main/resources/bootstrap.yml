@@ -14,8 +14,11 @@ spring:
         server-addr: 106.14.224.151:8848
         group: DEFAULT_GROUP
         file-extension: yaml  #拿到的是nacos中的cart-dev.yaml
+        # 共享配置
+        shared-dataids: public-dev.yaml
+        #白名单配置
         ext-config[0]:
-          data-id: public-dev.yaml  #拿到的是nacos中的public-dev.yaml
+          data-id: white-dev.yaml
           group: DEFAULT_GROUP
           refresh: true
     sentinel:

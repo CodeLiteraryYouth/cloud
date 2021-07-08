@@ -13,7 +13,6 @@ import com.dmj.cloud.model.query.UserQuery;
 import com.dmj.cloud.model.vo.SysUserVO;
 import com.dmj.cloud.service.SysUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.dmj.cloud.util.JwtUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.BeanUtils;
@@ -70,7 +69,6 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         SysUser sysUser=new SysUser();
         BeanUtils.copyProperties(sysUserDTO,sysUser);
         sysUser.setCreateTime(LocalDateTime.now());
-        sysUser.setCreater(JwtUtils.getUsername());
         sysUserMapper.insert(sysUser);
         if (Objects.nonNull(sysUserDTO.getRoles()) && !sysUserDTO.getRoles().isEmpty()) {
             for (String roleCode: sysUserDTO.getRoles()) {
@@ -95,7 +93,6 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         SysUser sysUser=new SysUser();
         BeanUtils.copyProperties(sysUserDTO,sysUser);
         sysUser.setUpdateTime(LocalDateTime.now());
-        sysUser.setUpdater(JwtUtils.getUsername());
         sysUserMapper.updateById(sysUser);
         if (Objects.nonNull(sysUserDTO.getRoles()) && !sysUserDTO.getRoles().isEmpty()) {
             sysUserRoleMapper.delete(new LambdaQueryWrapper<SysUserRole>().eq(SysUserRole::getUserId,sysUser.getId()));
