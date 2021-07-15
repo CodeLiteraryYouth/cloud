@@ -1,7 +1,6 @@
 package com.dmj.cloud.api;
 
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.dmj.cloud.base.BaseResult;
 import com.dmj.cloud.model.SysPermission;
 import com.dmj.cloud.model.query.PermissionQuery;

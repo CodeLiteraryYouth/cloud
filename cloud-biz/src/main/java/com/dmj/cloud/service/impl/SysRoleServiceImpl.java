@@ -5,6 +5,7 @@ import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.dmj.cloud.base.BaseResult;
 import com.dmj.cloud.constant.GlobalConstants;
+import com.dmj.cloud.mapper.SysPermissionMapper;
 import com.dmj.cloud.mapper.SysRolePermissionMapper;
 import com.dmj.cloud.model.SysRole;
 import com.dmj.cloud.mapper.SysRoleMapper;
@@ -47,6 +48,9 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
     private SysRolePermissionMapper sysRolePermissionMapper;
 
     @Autowired
+    private SysPermissionMapper sysPermissionMapper;
+
+    @Autowired
     private RedisTemplate redisTemplate;
 
     @Override
@@ -61,7 +65,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
 
     @Override
     public List<SysPermissionDTO> listPermRoles() {
-        return null;
+        return sysPermissionMapper.listPermissionRole();
     }
 
     @Override
@@ -81,7 +85,6 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
                     urlPermRoles.put(perm, roles);
                 });
                 redisTemplate.opsForHash().putAll(GlobalConstants.URL_PERM_ROLES_KEY, urlPermRoles);
-                redisTemplate.convertAndSend("cleanRoleLocalCache","true");
             }
             // 初始化URL【按钮->角色(集合)】规则
             List<SysPermissionDTO> btnPermList = permissions.stream()
@@ -115,6 +118,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
                 sysRolePermission.setPermissionId(permissionId);
                 sysRolePermissionMapper.insert(sysRolePermission);
             }
+            refreshPermRolesRules();
         }
         return BaseResult.success();
     }
@@ -136,6 +140,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
                 sysRolePermission.setPermissionId(permissionId);
                 sysRolePermissionMapper.insert(sysRolePermission);
             }
+            refreshPermRolesRules();
         }
         return BaseResult.success();
     }
